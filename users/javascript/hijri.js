@@ -92,10 +92,13 @@ var outputIslamicDate = /*wdNames[iDate[4]] + ", "
 + */iDate[5] + " " + iMonthNames[iDate[6]] + " " + iDate[7] + " AH";
 return outputIslamicDate;
 }
-var el = document.querySelector('[data-hijridate]');
-var greg = el.innerText;
-var ar = greg.split('-');
-var year = ar[0];
-var month = ar[1];
-var date = ar[2];
-el.innerText = writeIslamicDate(date, month, year);
+var els = document.getElementsByClassName('data-hijridate');
+for (var i = 0; i < els.length; i++) {
+    var el = els[i];        
+    var greg = el.innerText;
+    var ar = greg.split('-');
+    var year = ar[0];
+    var month = ar[1];
+    var date = ar[2];
+    el.innerText = writeIslamicDate(date, month, year);
+};
