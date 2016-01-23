@@ -85,7 +85,7 @@ if (is_null($_SESSION['fromLogin'])) {//send them back
 
     /* fetch values */
     while (mysqli_stmt_fetch($stmt)) {
-      echo "<tr><td>".$thali."</td><td>".$name."</td><td>".$contact."</td><td>".$active."</td><td>".$transporter."</td><td>".$address."</td><td>".$startdate."</td><td>".$stopdate."</td><td>".$hubpending."</td></tr>";
+      echo "<tr><td>".$thali."</td><td>".$name."</td><td>".$contact."</td><td>".$active."</td><td>".$transporter."</td><td>".$address."</td><td>".$startdate."</td><td data-hijridate>".$stopdate."</td><td>".$hubpending."</td></tr>";
     }echo "</table>";
 
     /* close statement */
@@ -119,5 +119,6 @@ mysqli_close($link);
       <!-- end footer -->
     </div>
   </div>
+  <script src="javascript/hijri.js"></script>
 </body>
 </html>					
