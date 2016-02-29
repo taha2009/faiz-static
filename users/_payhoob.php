@@ -24,7 +24,7 @@ if($_POST)
 
   require "emailTest.php";
 
-  //if ($amount == $paid)
+  if ($amount == $paid)
   echo "success";
 
 }
