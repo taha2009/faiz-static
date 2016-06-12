@@ -11,7 +11,7 @@ if(isset($_GET['option']))
 						4 => '53000'
 							);
 	$hub_amount = $huboptions[$_GET['option']];
-	$update = mysqli_query($link,"UPDATE thalilist set yearly_hub='".$hub_amount."' WHERE Email_id = '".$_SESSION['mail']."'");
+	$update = mysqli_query($link,"UPDATE thalilist set yearly_hub='".$hub_amount."', yearly_takhmeen='".$hub_amount."' WHERE Email_id = '".$_SESSION['mail']."'");
 }
 
 echo ("<SCRIPT LANGUAGE='JavaScript'>

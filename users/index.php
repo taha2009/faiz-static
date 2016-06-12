@@ -3,7 +3,7 @@
 include('connection.php');
 include('_authCheck.php');
 
-$query="SELECT Thali, yearly_commitment, NAME, Dues, yearly_hub, CONTACT, Active, Transporter, Full_Address, Thali_start_date, Thali_stop_date, Total_Pending FROM thalilist where Email_id = '".$_SESSION['email']."'";
+$query="SELECT Thali, yearly_commitment, NAME, Dues, yearly_hub, yearly_takhmeen, CONTACT, Active, Transporter, Full_Address, Thali_start_date, Thali_stop_date, Total_Pending FROM thalilist where Email_id = '".$_SESSION['email']."'";
 
 $values = mysqli_fetch_assoc(mysqli_query($link,$query));
 
@@ -22,11 +22,11 @@ if(empty($values['Thali']))
   $status = "Sorry! Either $some_email is not registered with us OR your thali is not active. Send and email to help@faizstudents.com";
   header("Location: login.php?status=$status");
 }
-else if($values['yearly_commitment'] == 1 && empty($values['yearly_hub']) && $values['Active'] == 1)
+else if($values['yearly_commitment'] == 1 && empty($values['yearly_takhmeen']) && $values['Active'] == 1)
 {
   header("Location: selectyearlyhub.php"); 
 }
-else if($values['yearly_commitment'] == 1 && !empty($values['yearly_hub']))
+else if($values['yearly_commitment'] == 1 && !empty($values['yearly_takhmeen']))
 {
   $monthly_breakdown = (int)$values['Total_Pending']/8; 
 }
