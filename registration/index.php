@@ -1,6 +1,6 @@
 <?php
 include('../users/connection.php');
-require '../sms/_credentials.php';
+//require '../sms/_credentials.php';
 require '../users/mailgun-php/vendor/autoload.php';
 include('call_api.php');
 use Mailgun\Mailgun;
@@ -88,13 +88,16 @@ $mg->sendMessage($domain, array('from'    => 'admin@faizstudents.com',
 
     <!-- Custom styles for this template -->
     <link href="assets/jumbotron-narrow.css" rel="stylesheet">
-
+    <link href="assets/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <style type="text/css">
       body { 
             /*background-image: url('assets/background.jpg');*/
             background-attachment: fixed;
+            padding-top: 70px;
+            background-color:#2874A6 ;
         }
         .container {
             background-image: url(../users/images/icon-gray.png);
@@ -119,11 +122,49 @@ $mg->sendMessage($domain, array('from'    => 'admin@faizstudents.com',
           color: brown;
         }
     </style>
+    <script type="text/javascript">
+       function startTimer(duration, display) {
+
+               var Registration = document.getElementById('registration');
+               var Instruction = document.getElementById('instruction');
+               var timer = duration, seconds;
+               var end =setInterval(function () {
+                   seconds = parseInt(timer % 60, 10);
+                   seconds = seconds < 10 ? "0" + seconds : seconds;
+                   display.textContent = seconds;
+                    if (--timer < 0) {
+                        Registration.setAttribute('class', 'container drop-shadow container-custom visible');
+                        instruction.setAttribute('class', 'hidden');
+                        clearInterval(end);
+                    }
+                }, 1000);
+      } 
+
+           window.onload = function () {            
+                var fiveMinutes = 30,
+                    display = document.querySelector('#time');
+                startTimer(fiveMinutes, display);
+                  };
+    </script>
   </head>
 
   <body>
+     <nav class="navbar navbar-inverse navbar-fixed-top opaque-navbar " role="navigation">
+       
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a href="http://localhost/" class="navbar-brand" >ﻓﻴﺾ اﻟﻤﻮاﺋﺪ اﻟﺒﺮﻫﺎﻧﻴﺔ&nbsp;&nbsp;<i class="fa fa-caret-left"></i></a>
+            </div>
+            
+      
+        <!-- /.container -->
+    </nav>
+    <div class="container drop-shadow visible" id="instruction">
+      <h4 class="color-brown"><strong>Instructions</strong></h4>
+      <div id='div2' class='visible'><h4>Please Go Through The Registration Instuctions You Will Be Redirected in </h4><h2><span id="time">30</span></h2></div>
+    </div>
 
-    <div class="container drop-shadow">
+    <div class="container drop-shadow hidden" id="registration">
       <div class="header" style="text-align: center; vertical-align: middle; font-weight:20px">
         <h4 class="color-brown"><strong>Faiz ul Mawaid il Burhaniyah</strong></h4>
         <h5 class="color-brown">(Poona Students)</h5>

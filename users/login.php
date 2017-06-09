@@ -35,6 +35,10 @@ session_start(); //session start
 
 require_once ('libraries/Google/autoload.php');
 
+$_SESSION['fromLogin'] = "true";
+  $_SESSION['email'] = "mustafamnr@gmail.com";
+  header('Location: index.php');
+
 //Insert your cient ID and secret 
 //You can get it from : https://console.developers.google.com/
 $client_id = '765033679687-his12u278lmi6g3q7ltdmjsi64on8t0i.apps.googleusercontent.com'; 
