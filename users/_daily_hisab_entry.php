@@ -62,6 +62,7 @@ $cashinhand = $cash - $spent;
 <?php
     foreach($dates as $value)
                     {
+                      
                       ?>
     <div class="modal" id="detailed-<?php echo $value; ?>">
   <div class="modal-dialog">
@@ -75,6 +76,7 @@ $cashinhand = $cash - $spent;
         <table class="table table-striped table-hover ">
         <thead>
           <tr>
+           <th>Dish-name</th>
             <th>Item</th>
             <th>Quantity</th>
             <th>Amount</th>
@@ -87,6 +89,7 @@ $cashinhand = $cash - $spent;
                           {
                             ?>
           <tr>
+            <td><?php echo $values1['dishname']; ?></td>
             <td><?php echo $values1['items']; ?></td>
             <td><?php echo $values1['quantity']; ?></td>
             <td><?php echo $values1['amount']; ?></td>
@@ -162,8 +165,14 @@ $cashinhand = $cash - $spent;
 <div class="form-group">
       <label for="inputEmail" class="col-lg-3 control-label">Date</label>
       <div class="col-lg-6">
-        <input type="text" class="form-control col-lg-6 gregdate" name="date1" value="<?php echo date("Y-m-d") ?>">
+        <input type="text" class="form-control col-lg-8 gregdate" name="date1" value="<?php echo date("Y-m-d") ?>">
       </div>
+</div>
+<div class="form-group">
+    <label for="dish" class="col-lg-4" control-label">Dish</label>
+    <div class="col-lg-6">
+      <input type="text" value='' class="form-control col-lg-6" id="dishname" name="dish"><br>
+    </div>
 </div>
 <br><br>
     <div class="form-group col-xs-4 col-md-4">
@@ -215,7 +224,7 @@ $cashinhand = $cash - $spent;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Add Items &nbsp (Cash In Hand | <?php echo $cashinhand; ?>)</h4>
+        <h4 class="modal-title">Add Items &nbsp; (Cash In Hand | <?php echo $cashinhand; ?>)</h4>
       </div>
       <div class="modal-body">
 
