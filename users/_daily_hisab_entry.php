@@ -61,8 +61,7 @@ $cashinhand = $cash - $spent;
 
 <?php
     foreach($dates as $value)
-                    {
-                      
+                    {                      
                       ?>
     <div class="modal" id="detailed-<?php echo $value; ?>">
   <div class="modal-dialog">
@@ -165,7 +164,7 @@ $cashinhand = $cash - $spent;
 <div class="form-group">
       <label for="inputEmail" class="col-lg-3 control-label">Date</label>
       <div class="col-lg-6">
-        <input type="text" class="form-control col-lg-8 gregdate" name="date1" value="<?php echo date("Y-m-d") ?>">
+        <input type="text" class="form-control col-lg-6 gregdate" name="date1" value="<?php echo date("Y-m-d") ?>">
       </div>
 </div>
 <div class="form-group">
