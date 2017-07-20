@@ -61,7 +61,7 @@ $cashinhand = $cash - $spent;
 
 <?php
     foreach($dates as $value)
-                    {
+                    {                      
                       ?>
     <div class="modal" id="detailed-<?php echo $value; ?>">
   <div class="modal-dialog">
@@ -75,6 +75,7 @@ $cashinhand = $cash - $spent;
         <table class="table table-striped table-hover ">
         <thead>
           <tr>
+           <th>Dish-name</th>
             <th>Item</th>
             <th>Quantity</th>
             <th>Rate(Rs)<th>
@@ -88,15 +89,17 @@ $cashinhand = $cash - $spent;
                           {
                             ?>
           <tr>
+            <td><?php echo $values1['dishname']; ?></td>
             <td><?php echo $values1['items']; ?></td>
             <td><?php 
-                  if($values1['quantity']==""){echo "1 unit";}
-                  echo $values1['quantity']; ?></td>
-            <td><?php 
-                    if(preg_match("[500\s*gm|1\/2\s*kg]", $values1['quantity'])){$test=0.5;}
-                    else {$test=preg_replace("([A-Za-z|\s+A-Za-z]|A-Za-z\s)", "", $values1['quantity']);}
-                    if($test==""){ $test="1"; }
-                    echo  round($values1['amount']/$test,2) ;?><td>
+                   if($values1['quantity']==""){echo "1 unit";}
+                   echo $values1['quantity']; ?></td>
+             <td><?php 
+                     if(preg_match("[500\s*gm|1\/2\s*kg]", $values1['quantity'])){$test=0.5;}
+                     else {$test=preg_replace("([A-Za-z|\s+A-Za-z]|A-Za-z\s)", "", $values1['quantity']);}
+                     if($test==""){ $test="1"; }
+                     echo  round($values1['amount']/$test,2) ;?><td>
+            <td><?php echo $values1['quantity']; ?></td>
             <td><?php echo $values1['amount']; ?></td>
           </tr>
           <?php } ?>
@@ -173,6 +176,12 @@ $cashinhand = $cash - $spent;
         <input type="text" class="form-control col-lg-6 gregdate" name="date1" value="<?php echo date("Y-m-d") ?>">
       </div>
 </div>
+<div class="form-group">
+    <label for="dish" class="col-lg-4" control-label">Dish</label>
+    <div class="col-lg-6">
+      <input type="text" value='' class="form-control col-lg-6" id="dishname" name="dish"><br>
+    </div>
+</div>
 <br><br>
     <div class="form-group col-xs-4 col-md-4">
         <label for="item" class="control-label">Item</label>
@@ -223,7 +232,7 @@ $cashinhand = $cash - $spent;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Add Items &nbsp (Cash In Hand | <?php echo $cashinhand; ?>)</h4>
+        <h4 class="modal-title">Add Items &nbsp; (Cash In Hand | <?php echo $cashinhand; ?>)</h4>
       </div>
       <div class="modal-body">
 
