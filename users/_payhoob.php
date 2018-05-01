@@ -32,16 +32,25 @@ if($_POST)
   echo "success";
   }
 
-$user_amount = $_POST['receipt_amount'];
-$user_thali = $_POST['receipt_thali'];
-$user_receipt = $_POST['receipt_number'];
-$user_date = $_POST['receipt_date'];
-$sql = mysqli_query($link,"SELECT NAME, Email_ID, CONTACT from thalilist where Thali='".$user_thali."'");
-$row = mysqli_fetch_row($sql);
-$user_name = $row[0];
-$sms_to = $row[2];
-$sms_body = "Mubarak for earning sawab by participating in FMB. Moula(T.U.S) nu ehsan che ke apne jamarwa ma shamil kare che. Hub $user_amount/Thali $user_thali/Receipt $user_receipt";
-$sms_body = urlencode($sms_body);
-$result = file_get_contents("http://54.254.154.166/sendhttp.php?user=mustafamnr&password=$smspassword&mobiles=$sms_to&message=$sms_body&sender=FAIZST&route=Template");
-//-----------------------------------------
+  $user_amount = $_POST['receipt_amount'];
+  $user_thali = $_POST['receipt_thali'];
+  $user_receipt = $_POST['receipt_number'];
+  $user_date = $_POST['receipt_date'];
+  $sql = mysqli_query($link,"SELECT NAME, Email_ID, CONTACT, Total_Pending, Gender from thalilist where Thali='".$user_thali."'");
+  $row = mysqli_fetch_row($sql);
+  $user_name = $row[0];
+  $sms_to = $row[2];
+  $user_pending = $row[3];
+  $user_suffix = "bhai";
+  if($row[4] == "Female")
+  {
+    $user_suffix = "ben";
+  }
+  // use \n in double quoted strings for new line character
+  $sms_body = "Mubarak $user_name $user_suffix for contributing Rs. $user_amount (R.No. $user_receipt) in FMB. Moula TUS nu ehsan che ke apne jamarwa ma shamil kare che.\n"
+              ."Thali#:$user_thali\n"
+              ."Pending:$user_pending";
+  $sms_body = urlencode($sms_body);
+  $result = file_get_contents("http://54.254.154.166/sendhttp.php?user=mustafamnr&password=$smspassword&mobiles=$sms_to&message=$sms_body&sender=FAIZST&route=Template");
+  //-----------------------------------------
 }
