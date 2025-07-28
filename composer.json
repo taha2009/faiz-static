@@ -1,4 +1,9 @@
 {
+  "config": {
+    "platform": {
+      "php": "7.3"
+    }
+  },
   "require": {
     "geniusts/hijri-dates": "^1.1",
     "dompdf/dompdf": "^2.0",
