@@ -76,5 +76,8 @@ function Export_Database($host, $user, $pass, $name,  $tables = false, $backup_n
 $content = Export_Database($mysqlHostName, $mysqlUserName, $mysqlPassword, $DbName,  $tables = false, $backup_name = false);
 $subject = 'database backup ' . date('d/m/Y');
 echo "now sending email";
-sendEmail('yusuf4u52@gmail.com', $subject, "Please find the attachment", $content);
+$emails = [
+    'yusuf4u52@gmail.com'
+];
+sendEmail($emails, $subject, $content);
 echo "########## backup completed ##############";
