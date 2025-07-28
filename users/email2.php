@@ -68,6 +68,17 @@ fwrite($myfile, $txt);
 fclose($myfile);
 mysqli_query($link, "UPDATE thalilist SET thalicount = thalicount + 1 WHERE Active='1'");
 $msgvar = str_replace("\n", "<br>", $msgvar);
-sendEmail('saifuddincalcuttawala@gmail.com', 'Start Stop update ' . $tomorrow_date, $msgvar, null, null, true);
+
+$emails = [
+	'saifuddincalcuttawala@gmail.com',
+	'yusuf4u52@gmail.com',
+	'mesaifee52@gmail.com',
+	'mustafamnr@gmail.com',
+	'tzabuawala@gmail.com',
+	'ahmedi.murtaza@gmail.com',
+	'mnr.9102@gmail.com'
+];
+
+sendEmail($emails, 'Start Stop update ' . $tomorrow_date, $msgvar);
 mysqli_query($link, "update change_table set processed = 1 where id in (" . implode(',', $processed) . ")");
 
