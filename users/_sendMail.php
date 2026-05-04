@@ -11,14 +11,17 @@ function sendEmail(array $to, $subject, $bodyHtml)
 	$mail = new PHPMailer(true);
 
 	try {
-		// SMTP configuration for Hostinger
+		// SMTP configuration for Hostinger (SSL on port 465)
 		$mail->isSMTP();
 		$mail->Host       = 'smtp.hostinger.com';
 		$mail->SMTPAuth   = true;
 		$mail->Username   = SMTP_USER;
 		$mail->Password   = SMTP_PASS;
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		$mail->Port       = 587;
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
+		$mail->Port       = 465;
+
+		// Optional but helps with some shared hosting setups
+		$mail->SMTPAutoTLS = false;
 
 		// From and To
 		$mail->setFrom(SMTP_USER);
@@ -30,12 +33,13 @@ function sendEmail(array $to, $subject, $bodyHtml)
 		$mail->isHTML(true);
 		$mail->Subject = $subject;
 		$mail->Body    = $bodyHtml;
+
 		$mail->send();
-		$mail->SMTPKeepAlive = false;
-		$mail->smtpClose();
+
 		return true;
+
 	} catch (Exception $e) {
-		echo ("Email could not be sent. PHPMailer Error: {$mail->ErrorInfo}");
+		echo "Email could not be sent. PHPMailer Error: {$mail->ErrorInfo}";
 		return false;
 	}
 }
