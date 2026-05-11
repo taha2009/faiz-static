@@ -95,7 +95,7 @@ $musaid_details = mysqli_fetch_assoc(mysqli_query($link, "SELECT NAME, CONTACT F
 
         <li class="list-group-item">
           <h6 class="list-group-item-head ing text-muted">Receipts</h6>
-          <p class="list-group-item-text"><a href="/users/generate_receipt_pdf.php?thalino=<?php echo $values['Thali']; ?>">Export Receipts</a></p>
+          <p class="list-group-item-text"><a href="/users/generate_receipt_pdf.php?thalino=<?php echo $values['Thali']; ?>&year=<?php echo $_GET['year']; ?>">Export Receipts</a></p>
         </li>
 
         <li class="list-group-item">
